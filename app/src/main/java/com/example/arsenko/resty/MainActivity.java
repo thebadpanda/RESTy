@@ -32,12 +32,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button planets;
     ProgressBar progressBar;
     TextView responseView;
-    public static final String API_URL = "https://swapi.co/api/";
+    public static final String API_URL = "https://swapi.co/api/?format=json";
     public static final String PEOPLE_URL = "people/";
     public static final String STARSHIPS_URL = "starships/";
     public static final String PLANET_URL = "planet/";
     public static String STRAIGHT_URL;
     public String response;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             URL url = new URL(API_URL + STRAIGHT_URL);
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
             Toast.makeText(this, "open connection", Toast.LENGTH_SHORT).show();
+            Log.i("log", "open connection");
             try {
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
                 StringBuilder stringBuilder = new StringBuilder();
@@ -72,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             }
         } catch (Exception e) {
-            Log.e("ERROR", e.getMessage(), e);
+            Log.i("log", e.getMessage(), e);
             Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
             return  null;
         }
@@ -86,6 +88,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         progressBar.setVisibility(View.GONE);
         Toast.makeText(this, "response:" + response, Toast.LENGTH_SHORT).show();
+        Log.i("log", "response" + response);
         responseView.setText(response);
         try{
             JSONObject object = (JSONObject) new JSONTokener(response).nextValue();
@@ -104,15 +107,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         switch (v.getId()) {
             case R.id.peopleBtn:
-                STRAIGHT_URL = "people/";
-                getConnection();
-                getResponse(response);
+                STRAIGHT_URL = "people/?format=json";
+                getResponse(getConnection());
                 break;
             case R.id.starshipsBtn:
-                STRAIGHT_URL = "starships/";
+                STRAIGHT_URL = "starships/?format=json";
                 break;
             case R.id.planetsBtn:
-                STRAIGHT_URL = "planets/";
+                STRAIGHT_URL = "planets/?format=json";
                 break;
         }
     }
