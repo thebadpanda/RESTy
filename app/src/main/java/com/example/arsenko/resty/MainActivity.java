@@ -18,6 +18,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -126,37 +127,33 @@ public class MainActivity extends AppCompatActivity {
                 JSONArray array = object.getJSONArray("results");
                 Log.i("log", "results" + array);
 
+//                View.OnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        for(int i=0; i<array.length(); i++){
+//                            JSONObject jObject = array.getJSONObject(i);
+//                            String name = jObject.optString("name");
+//                            Log.i("log", "name: " + name);
+//                            responseView.getText();
+//                            responseView.setText(responseView.getText() + "\n" + name);
+//
+//                        }
+//                    }
+//                });
                 for(int i=0; i<array.length(); i++){
                     JSONObject jObject = array.getJSONObject(i);
                     String name = jObject.optString("name");
                     Log.i("log", "name: " + name);
                     responseView.getText();
                     responseView.setText(responseView.getText() + "\n" + name);
-
                 }
-
-
-                //JSONObject name = object.getJSONObject("name");
-//                responseView.setText();
-
-//                Iterator panelKeys = jObject.keys();
-//                while (panelKeys.hasNext()) {
-//                    String key = (String) panelKeys.next();
-//                    Log.i("log", key);
-//                }
-
-              //  responseView.setText((object.getJSONArray("results")).toString());
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
     }
-
-
 }
-
-
 
 //    @Override
 //    public void onClick(View v) {
@@ -179,8 +176,6 @@ public class MainActivity extends AppCompatActivity {
 //                break;
 //        }
 //    }
-
-
 //    public static JSONObject jsonObject(String API_URL){
 //        HttpURLConnection httpURLConnection = null;
 //
