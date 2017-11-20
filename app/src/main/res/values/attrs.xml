@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="MyCustomView">
-        <attr name= "showText" format="boolean"/>
-
-        <!--<attr name="textPosition" format="enum">-->
-            <!--<enum name="right" value="0"/>-->
-            <!--<enum name="left" value="1"/>-->
-        <!--</attr>-->
+        <attr name= "pageIndecator" format="integer"/>
 
     </declare-styleable>
 

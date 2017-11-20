@@ -10,11 +10,11 @@
     <com.example.arsenko.resty.MyCustomView
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:background="@color/colorPrimaryDark"
+        android:background="@drawable/_darthvader"
         custom:showText = "true"
-        />
+        android:layout_centerHorizontal="true" />
     <TextView
-        android:layout_width="368dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/infoText"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
