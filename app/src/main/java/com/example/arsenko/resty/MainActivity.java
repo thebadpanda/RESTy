@@ -31,9 +31,6 @@ public class MainActivity extends AppCompatActivity {
     Button imdbButton;
 
     public static final String API_URL = "https://swapi.co/api/";
-    //    public static final String PEOPLE_URL = "people/";
-//    public static final String STARSHIPS_URL = "starships/";
-//    public static final String PLANET_URL = "planet/";
     public static String STRAIGHT_URL;
 
     @Override
@@ -45,10 +42,8 @@ public class MainActivity extends AppCompatActivity {
         planets = (Button) findViewById(R.id.planetsBtn);
         starships = (Button) findViewById(R.id.starshipsBtn);
         imdbButton = (Button) findViewById(R.id.imdbBtn);
-
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         responseView = (TextView) findViewById(R.id.responseView);
-
 
         people.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,8 +53,6 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-
-
         starships.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,8 +60,6 @@ public class MainActivity extends AppCompatActivity {
                 new ForRestTask().execute();
             }
         });
-
-
         planets.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
         imdbButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -86,10 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-
     }
-
 
     private class ForRestTask extends AsyncTask<Void, Void, String> {
 
@@ -98,7 +85,6 @@ public class MainActivity extends AppCompatActivity {
             responseView.setText("");
 
         }
-
         protected String doInBackground(Void... urls) {
             // make connection
             try {
@@ -127,7 +113,6 @@ public class MainActivity extends AppCompatActivity {
 
         }
         // parsing JSON
-
         protected void onPostExecute(String response) {
             if (response == null) {
                 response = "Error!";
@@ -168,70 +153,3 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 }
-
-//    @Override
-//    public void onClick(View v) {
-//
-//        switch (v.getId()) {
-//            case R.id.peopleBtn:
-//                STRAIGHT_URL = "people/?format=json";
-//                ForRestTask peopleTask = new ForRestTask();
-//                peopleTask.execute();
-//                break;
-//            case R.id.starshipsBtn:
-//                STRAIGHT_URL = "starships/?format=json";
-//                ForRestTask starshipsTask = new ForRestTask();
-//                starshipsTask.execute();
-//                break;
-//            case R.id.planetsBtn:
-//                STRAIGHT_URL = "planets/?format=json";
-//                ForRestTask planetsTask = new ForRestTask();
-//                planetsTask.execute();
-//                break;
-//        }
-//    }
-//    public static JSONObject jsonObject(String API_URL){
-//        HttpURLConnection httpURLConnection = null;
-//
-//        try{
-//            URL urlToRequest = new URL(API_URL);
-//            httpURLConnection = (HttpURLConnection) urlToRequest.openConnection();
-////            httpURLConnection.setConnectTimeout(CONNECTION_TIMEOUT);
-////            httpURLConnection.setReadTimeout(DATARETRIEVAL_TIMEOUT);
-//
-//            //handle issues
-//            int statusCode = httpURLConnection.getResponseCode();
-//            if(statusCode == HttpURLConnection.HTTP_UNAUTHORIZED){
-//                Log.e(TAG, "Authorization required");
-//            }else if(statusCode != HttpURLConnection.HTTP_OK){
-//                Log.e(TAG, "You have another error");
-//            }
-//
-//            //create JSON
-//            InputStream inputStream = new BufferedInputStream(httpURLConnection.getInputStream());
-//            return new JSONObject(getResponseText(inputStream));
-//
-//
-////        }catch(MalformedURLException e){
-////
-////        }catch(IOException e){
-////
-////        }catch(SocketTimeoutException e){
-////
-////        }catch(JSONException e){
-//
-//        }catch(Exception e){
-//            Log.e("ERROR", e.getMessage(), e);
-//        }
-//        finally {
-//            if (httpURLConnection != null){
-//                httpURLConnection.disconnect();
-//            }
-//        }
-//        return null;
-//    }
-//
-//    private static String getResponseText(InputStream inStream){
-//        return new Scanner(inStream).useDelimiter("\\A").next();
-//    }
-//}

@@ -1,18 +1,14 @@
 package com.example.arsenko.resty;
 
-
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.util.MalformedJsonException;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -25,7 +21,6 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.List;
 
 public class IMDbapi extends AppCompatActivity{
 
@@ -52,8 +47,6 @@ public class IMDbapi extends AppCompatActivity{
         enteredText.setFocusableInTouchMode(true);
         enteredText.requestFocus();
 
-        final Context context;
-
         enteredText.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
@@ -73,15 +66,6 @@ public class IMDbapi extends AppCompatActivity{
                 return false;
             }
         });
-
-        enteredText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-                return false;
-            }
-        });
-
-
     }
 
     private class IMDBapiTask extends AsyncTask<String, Void, String>{
@@ -103,17 +87,6 @@ public class IMDbapi extends AppCompatActivity{
         @Override
         protected String doInBackground(String... urls) {
             try{
-//                Uri.Builder builder = new Uri.Builder();
-//                builder.scheme("http");
-//                        builder.authority("www.omdbapi.com");
-////                        .appendPath("?i=tt3896198&apikey=e8c72fb")
-//                        builder.appendQueryParameter("?i", "tt3896198");
-//                        builder.appendQueryParameter("apikey", "e8c72fb");
-//                        builder.appendQueryParameter("?t", mTitle);
-//                        builder.build();
-
-//                URL url = new URL(builder.toString());
-
                 URL url = new URL(IMDB_URL+mTitle+API_KEY);
                 Log.i("URL: ", url.toString());
 
@@ -147,7 +120,7 @@ public class IMDbapi extends AppCompatActivity{
             }
            progressBar.setVisibility(View.GONE);
             Log.i("log", "response: " + response);
-//            showInfo.setText(response);
+//            infoView.setText(response);
             try{
                 JSONObject jsonObject = new JSONObject(response);
 //                String opt = jsonObject.optString("Title");
